@@ -9,6 +9,8 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/navigation' %><br>
+    <%= yield %><br>
+    <%= render 'layouts/messages' %>
   </body>
 </html>
