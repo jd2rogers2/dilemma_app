@@ -2,5 +2,11 @@
 
 <ul>
   <% @dilemma.options.each do |opt| %>
+    <li>options   -   total points</li>
+    <li><%= "#{opt.name} - #{opt.total_points}" %></li>
   <% end %>
+  <li><%= link_to "New option", new_option_path %></li>
 </ul>
+<br>
+
+<%# link_to "Delete this dilemma", dilemma_path(@dilemma), method: "delete" %>

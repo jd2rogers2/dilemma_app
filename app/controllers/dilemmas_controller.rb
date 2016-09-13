@@ -4,8 +4,7 @@ class DilemmasController < ApplicationController
   end
 
   def create
-    binding.pry
-    @dilemma = current_user.dilemmas.build(dilemma_params)
+    @dilemma = current_user.dilemmas.create(dilemma_params)
     redirect_to dilemma_path(@dilemma)
   end
 
@@ -22,7 +21,7 @@ class DilemmasController < ApplicationController
   def index
   end
 
-  def delete
+  def destroy
   end
 
   private

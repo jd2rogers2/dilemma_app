@@ -17,6 +17,6 @@ class TagsController < ApplicationController
   def index
   end
 
-  def delete
+  def destroy
   end
 end
