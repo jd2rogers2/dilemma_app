@@ -9,8 +9,13 @@
   </head>
 
   <body>
-    <%= render 'layouts/navigation' %><br>
+    <div class="nav">
+      <%= render 'layouts/navigation' %><br>
+    </div> <!-- nav -->
+
     <%= yield %><br>
-    <%= render 'layouts/messages' %>
+    <div class="flash_messages">
+      <%= render 'layouts/flash_ßmessages' %>
+    </div> <!-- flash_messages -->
   </body>
 </html>
