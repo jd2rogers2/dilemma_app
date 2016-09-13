@@ -3,10 +3,17 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  # devise :omniauthable, omniauth_provider: :facebook
+  devise :omniauthable, omniauth_providers: [:facebook]
   has_many :dilemmas
 
   def overdue_dilemmas
     self.dilemmas.collect {|d| d if d.overdue?}
+  end
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
   end
 end
