@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create(email: "user_1@email.com", password: "user_1")
-Dilemma.create(name: "what to have for lunch", user_id: 1)
+Dilemma.create(name: "what to have for lunch", user_id: 1, deadline: Date.new(2016, 9, 12))
 Option.create(name: "homemade turkey sandwhich", dilemma_id: 1)
 Option.create(name: "chipotle", dilemma_id: 1)
 Factor.create(name: "it's free", option_id: 1, points: 50)
@@ -34,7 +34,7 @@ Factor.create(name: "the movies out now are shit", option_id: 5, points: -25)
 Factor.create(name: "big comfy chairs", option_id: 5, points: 25)
 Factor.create(name: "i have a gift card", option_id: 5, points: 50)
 
-Dilemma.create(name: "what to be for halloween", user_id: 2)
+Dilemma.create(name: "what to be for halloween", user_id: 2, deadline: Date.new(2016, 10, 30))
 Option.create(name: "snap chat filters", dilemma_id: 3)
 Option.create(name: "trump", dilemma_id: 3)
 Option.create(name: "eggplant emoji", dilemma_id: 3)

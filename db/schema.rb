@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20160912135408) do
   create_table "dilemmas", force: :cascade do |t|
     t.string  "name"
     t.integer "user_id"
+    t.date    "deadline"
   end
 
   create_table "factors", force: :cascade do |t|

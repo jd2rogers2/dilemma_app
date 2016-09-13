@@ -16,4 +16,12 @@ class Dilemma < ApplicationRecord
     end
     has_most_points.name
   end
+
+  def overdue?
+    self.deadline < Time.now ? true : false
+  end
+
+  # def pretty_deadline
+  #   self.deadline.strftime("%A, %d %b %Y")
+  # end
 end

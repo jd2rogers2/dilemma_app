@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   # devise :omniauthable, omniauth_provider: :facebook
   has_many :dilemmas
+
+  def overdue_dilemmas
+    self.dilemmas.collect {|d| d if d.overdue?}
+  end
 end
