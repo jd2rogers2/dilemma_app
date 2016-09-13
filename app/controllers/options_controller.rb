@@ -16,4 +16,7 @@ class OptionsController < ApplicationController
 
   def index
   end
+
+  def delete
+  end
 end
