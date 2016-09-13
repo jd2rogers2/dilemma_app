@@ -1,5 +1,6 @@
 class DilemmasController < ApplicationController
   def new
+    @dilemma = Dilemma.new
   end
 
   def create

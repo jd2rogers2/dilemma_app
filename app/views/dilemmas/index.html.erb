@@ -1,2 +1,7 @@
-<h1>Dilemmas#index</h1>
-<p>Find me in app/views/dilemmas/index.html.erb</p>
+Your dilemmas:
+<ul>
+  <% current_user.dilemmas.each do |d| %>
+    <li><%= link_to d.name, dilemma_path(d) %></li>
+  <% end %>
+  <li><%= link_to "New dilemma", new_dilemma_path %></li>
+</ul>
