@@ -1,7 +1,11 @@
 Your dilemmas:
-<ul>
+<table>
   <% current_user.dilemmas.each do |d| %>
-    <li><%= link_to d.name, dilemma_path(d) %></li>
+    <tr>
+      <td><%= d.name %></td>
+      <td><%= link_to "view/edit", dilemma_path(d) %></td>
+      <td><%= link_to "delete", dilemma_path(d), method: "delete" %></td>
+    </tr>
   <% end %>
-  <li><%= link_to "New dilemma", new_dilemma_path %></li>
-</ul>
+</table>
+<p><%= link_to "Add new dilemma", new_dilemma_path %></p>

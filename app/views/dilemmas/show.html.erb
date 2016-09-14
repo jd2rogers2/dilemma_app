@@ -17,4 +17,4 @@
 <%= link_to "New option", new_option_path %>
 <br>
 
-<%# link_to "Delete this dilemma", dilemma_path(@dilemma), method: "delete" %>
+<%= link_to "Delete this dilemma", dilemma_path(current_user.current_dilemma), method: "delete" %>
