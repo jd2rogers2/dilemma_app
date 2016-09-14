@@ -1,2 +1,26 @@
-<h1>Options#new</h1>
-<p>Find me in app/views/options/new.html.erb</p>
+option:
+<%= form_for @option do |o| %>
+  <%= o.label :name %>
+  <%= o.text_field :name %><br>
+  <br>
+factors: <br>
+  <%= o.fields_for :factor, Factor.new do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :points %>
+    <%= f.text_field :points %><br>
+  <% end %>
+  <%= o.fields_for :factor, Factor.new do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :points %>
+    <%= f.text_field :points %><br>
+  <% end %>
+  <%= o.fields_for :factor, Factor.new do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :points %>
+    <%= f.text_field :points %><br>
+  <% end %>
+  <%= o.submit %>
+<% end %>

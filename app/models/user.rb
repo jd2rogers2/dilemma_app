@@ -16,4 +16,13 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
     end
   end
+
+  def current_dilemma
+    self.dilemmas.find_by(id: self.current_dilemma_id)
+  end
+
+  def current_dilemma=(dilemma_id)
+    self.current_dilemma_id = self.dilemmas.find_by(id: dilemma_id).id
+    self.save
+  end
 end

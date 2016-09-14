@@ -1,12 +1,19 @@
 <h3><%= @dilemma.name %></h3>
 
-<ul>
+<table>
+  <tr>
+    <th>options</th>
+    <th>total points</th>
+  </tr>
   <% @dilemma.options.each do |opt| %>
-    <li>options   -   total points</li>
-    <li><%= "#{opt.name} - #{opt.total_points}" %></li>
+    <tr>
+      <td><%= "#{opt.name}"%></td>
+      <td><%= "#{opt.total_points}" %></td>
+    </tr>
   <% end %>
-  <li><%= link_to "New option", new_option_path %></li>
-</ul>
+</table>
+
+<%= link_to "New option", new_option_path %>
 <br>
 
 <%# link_to "Delete this dilemma", dilemma_path(@dilemma), method: "delete" %>
