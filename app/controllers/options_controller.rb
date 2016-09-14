@@ -4,7 +4,6 @@ class OptionsController < ApplicationController
   end
 
   def create
-    binding.pry
     @option = current_user.current_dilemma.options.create(option_params)
     redirect_to option_path(@option)
   end
@@ -28,6 +27,6 @@ class OptionsController < ApplicationController
 
   private
   def option_params
-    params.require(:option).permit(:name, factor_1: [:name, :points], factor_2: [:name, :points], factor_3: [:name, :points], factor_4: [:name, :points], factor_5: [:name, :points])
+    params.require(:option).permit(:name, factor_attributes: [:name, :points])
   end
 end
