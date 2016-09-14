@@ -20,10 +20,14 @@ class OptionsController < ApplicationController
   end
 
   def destroy
+    @option = Option.find_by(id: params[:id])
+    @option.factors.each {|fact| @option.factors.delete(fact)}
+    Option.delete(@option)
+    redirect_to dilemma_path(current_user.current_dilemma)
   end
 
   private
   def option_params
-    params.require(:option).permit(:name, factor_attributes: [:name])
+    params.require(:option).permit(:name, factor_1: [:name, :points], factor_2: [:name, :points], factor_3: [:name, :points], factor_4: [:name, :points], factor_5: [:name, :points])
   end
 end
