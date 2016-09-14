@@ -3,8 +3,8 @@
   <%= link_to "home", dilemmas_path %> | 
   <%= link_to "sign out", destroy_session_path(current_user), method: "delete" %>
 <% else %>
-  <%= link_to "sign up", new_user_registration_path %> | 
-  <%= link_to "sign in with facebook", user_facebook_omniauth_authorize_path %>
+  <%= link_to "home", root_path %> | 
+  <%= link_to "log in or sign up", new_user_registration_path %>
 <% end %>
 <br>
 
