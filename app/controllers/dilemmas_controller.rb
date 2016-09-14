@@ -23,6 +23,10 @@ class DilemmasController < ApplicationController
   end
 
   def destroy
+    @dilemma = Dilemma.find_by(id: params[:id])
+    @dilemma.options.each {|opt| @dilemma.options.delete(opt)}
+    Dilemma.delete(@dilemma)
+    redirect_to dilemmas_path
   end
 
   private
