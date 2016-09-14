@@ -1,13 +1,11 @@
 class OptionsController < ApplicationController
   def new
-    @dilemma = current_user.current_dilemma
-    @option = @dilemma.options.new
+    @option = current_user.current_dilemma.options.new
   end
 
   def create
     binding.pry
-    @dilemma = current_user.current_dilemma
-    @option = @dilemma.options.create(option_params)
+    @option = current_user.current_dilemma.options.create(option_params)
     redirect_to option_path(@option)
   end
 
@@ -18,9 +16,7 @@ class OptionsController < ApplicationController
   end
 
   def show
-  end
-
-  def index
+    @option = current_user.current_dilemma.options.find_by(id: params[:id])
   end
 
   def destroy

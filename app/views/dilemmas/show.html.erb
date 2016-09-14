@@ -5,10 +5,11 @@
     <th>options</th>
     <th>total points</th>
   </tr>
-  <% @dilemma.options.each do |opt| %>
+  <% current_user.current_dilemma.options.each do |opt| %>
     <tr>
       <td><%= "#{opt.name}"%></td>
       <td><%= "#{opt.total_points}" %></td>
+      <td><%= link_to "view", option_path(opt) %></td>
     </tr>
   <% end %>
 </table>

@@ -16,8 +16,7 @@ class DilemmasController < ApplicationController
   end
 
   def show
-    @dilemma = current_user.dilemmas.find_by(id: params[:id])
-    current_user.current_dilemma = @dilemma.id
+    current_user.current_dilemma = current_user.dilemmas.find_by(id: params[:id])
   end
 
   def index

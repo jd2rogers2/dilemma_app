@@ -1,1 +1,18 @@
 <h3><%= current_user.current_dilemma.name %></h3>
+<h4><%= @option.name %></h4>
+
+<table>
+  <tr>
+    <th>factor</th>
+    <th>points</th>
+  </tr>
+  <% @option.factors.each do |fact| %>
+    <tr>
+      <td><%= "#{fact.name}"%></td>
+      <td><%= "#{fact.points}" %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "edit option", edit_option_path %>
+<br>
