@@ -1,15 +1,14 @@
 class OptionsController < ApplicationController
   def new
-    binding.pry
-    # @dilemma = Dilemma.find_by(id: params) from hidden
-    # @option = @dilemma.options.build
-    @option = Option.new
+    @dilemma = current_user.current_dilemma
+    @option = @dilemma.options.new
   end
 
   def create
-    # @dilemma = Dilemma.find_by(id: params) from hidden
-    # @option = @dilemma.options.create(option_params)
-    # redirect_to option_path(@option)
+    binding.pry
+    @dilemma = current_user.current_dilemma
+    @option = @dilemma.options.create(option_params)
+    redirect_to option_path(@option)
   end
 
   def edit

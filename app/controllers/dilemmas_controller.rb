@@ -5,6 +5,7 @@ class DilemmasController < ApplicationController
 
   def create
     @dilemma = current_user.dilemmas.create(dilemma_params)
+    current_user.current_dilemma = @dilemma.id
     redirect_to dilemma_path(@dilemma)
   end
 
@@ -16,6 +17,7 @@ class DilemmasController < ApplicationController
 
   def show
     @dilemma = current_user.dilemmas.find_by(id: params[:id])
+    current_user.current_dilemma = @dilemma.id
   end
 
   def index
