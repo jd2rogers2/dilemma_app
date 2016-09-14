@@ -23,6 +23,7 @@ class DilemmasController < ApplicationController
   end
 
   def destroy
+    # not deleting all options for some reason
     @dilemma = Dilemma.find_by(id: params[:id])
     @dilemma.options.each {|opt| @dilemma.options.delete(opt)}
     Dilemma.delete(@dilemma)
