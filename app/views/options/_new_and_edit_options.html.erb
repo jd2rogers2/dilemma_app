@@ -1,40 +1,18 @@
 <h3><%= current_user.current_dilemma.name %></h3>
+<%= link_to "back", dilemma_path(current_user.current_dilemma) %><br>
 
-option:
 <%= form_for :option do |o| %>
   <%= o.label :name %>
   <%= o.text_field :name %><br>
   <br>
 factors: <br>
-  <%= o.fields_for :factors do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <%= f.label :points %>
-    <%= f.text_field :points %>
-  <% end %><br>
-  <%= o.fields_for :factors do |f2| %>
-    <%= f2.label :name %>
-    <%= f2.text_field :name %>
-    <%= f2.label :points %>
-    <%= f2.text_field :points %><br>
-  <% end %>
-  <%= o.fields_for :factors do |f3| %>
-    <%= f3.label :name %>
-    <%= f3.text_field :name %>
-    <%= f3.label :points %>
-    <%= f3.text_field :points %><br>
-  <% end %>
-  <%= o.fields_for :factors do |f4| %>
-    <%= f4.label :name %>
-    <%= f4.text_field :name %>
-    <%= f4.label :points %>
-    <%= f4.text_field :points %><br>
-  <% end %>
-  <%= o.fields_for :factors do |f5| %>
-    <%= f5.label :name %>
-    <%= f5.text_field :name %>
-    <%= f5.label :points %>
-    <%= f5.text_field :points %><br>
+  <% 5.times do %>
+    <%= o.fields_for :factors do |f| %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.label :points %>
+      <%= f.text_field :points %>
+    <% end %><br>
   <% end %>
   <%= o.submit %>
 <% end %>

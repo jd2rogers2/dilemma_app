@@ -13,6 +13,7 @@ class OptionsController < ApplicationController
   end
 
   def update
+    binding.pry
   end
 
   def show
