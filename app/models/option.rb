@@ -2,6 +2,7 @@ class Option < ApplicationRecord
   belongs_to :dilemma
   has_many :factors
   accepts_nested_attributes_for :factors
+  before_destroy :delete_factors
 
   def factors_attributes=(factor_hash)
     @factor = self.factors.create(factor_hash["0"])
@@ -16,5 +17,11 @@ class Option < ApplicationRecord
       sum += f.points
     end
     sum
+  end
+
+  def delete_factors
+    self.factors.each do |f|
+      f.delete
+    end
   end
 end

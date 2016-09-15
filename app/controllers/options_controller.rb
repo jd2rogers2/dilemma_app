@@ -26,8 +26,7 @@ class OptionsController < ApplicationController
     # refactor this to use before_destroy :delete_factors
     # do same refactor for dilemma
     @option = Option.find_by(id: params[:id])
-    @option.factors.each {|fact| @option.factors.delete(fact)}
-    Option.delete(@option)
+    @option.delete
     redirect_to dilemma_path(current_user.current_dilemma)
   end
 
