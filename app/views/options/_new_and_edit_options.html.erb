@@ -1,17 +1,24 @@
 <h3><%= current_user.current_dilemma.name %></h3>
 <%= link_to "back", dilemma_path(current_user.current_dilemma) %><br>
 
-<%= form_for :option do |o| %>
+<%= form_for option do |o| %>
   <%= o.label :name %>
   <%= o.text_field :name %><br>
   <br>
-factors: <br>
-  <% 5.times do %>
-    <%= o.fields_for :factors do |f| %>
+  <%= o.label :factors %><br>
+  <% if option.factors.empty? %>
+    <%= o.fields_for :factors do |fact| %>
+      <%= fact.label :name %>
+      <%= fact.text_field :name %>
+      <%= fact.label :points %>
+      <%= fact.text_field :points %><br>
+    <% end %><br>
+  <% else %>
+    <%= o.fields_for :factors, option.factors do |f| %>
       <%= f.label :name %>
       <%= f.text_field :name %>
       <%= f.label :points %>
-      <%= f.text_field :points %>
+      <%= f.text_field :points %><br>
     <% end %><br>
   <% end %>
   <%= o.submit %>
