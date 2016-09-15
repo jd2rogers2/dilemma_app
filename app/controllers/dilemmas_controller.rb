@@ -24,9 +24,11 @@ class DilemmasController < ApplicationController
 
   def destroy
     # not deleting all options for some reason
+    # may have fixed it, still needs testing
+    # waiting on options#create to work
     @dilemma = Dilemma.find_by(id: params[:id])
-    @dilemma.options.each {|opt| @dilemma.options.delete(opt)}
-    Dilemma.delete(@dilemma)
+    @dilemma.options.each {|opt| opt.delete}
+    @dilemma.delete
     redirect_to dilemmas_path
   end
 
