@@ -19,9 +19,6 @@ class OptionsController < ApplicationController
   end
 
   def destroy
-    # likely needs to be fixed
-    # refactor this to use before_destroy :delete_factors
-    # do same refactor for dilemma
     @option = Option.find_by(id: params[:id])
     @option.destroy
     redirect_to dilemma_path(current_user.current_dilemma)

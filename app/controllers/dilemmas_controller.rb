@@ -23,10 +23,6 @@ class DilemmasController < ApplicationController
   end
 
   def destroy
-    # not deleting all options for some reason
-    # !!!!!! please double check before deleting these comments
-    # may have fixed it, still needs testing
-    # waiting on options#create to work
     @dilemma = Dilemma.find_by(id: params[:id])
     @dilemma.destroy
     redirect_to dilemmas_path

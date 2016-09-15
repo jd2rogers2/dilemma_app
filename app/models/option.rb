@@ -4,10 +4,12 @@ class Option < ApplicationRecord
   before_destroy :destroy_factors
 
   def factors_attributes=(factor_hash)
-    if factor_hash["0"][:name] != ""
-      new_fact = Factor.create(factor_hash["0"])
-      self.factors << new_fact
-      self.save
+    factor_hash.each do |num_key, hash|
+      if hash[:name] != "" && hash[:points] != ""
+        new_fact = Factor.create(hash)
+        self.factors << new_fact
+        self.save
+      end
     end
   end
 
