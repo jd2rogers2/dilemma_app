@@ -9,6 +9,7 @@ class OptionsController < ApplicationController
   end
 
   def edit
+    @option = current_user.current_dilemma.options.find_by(id: params[:id])
   end
 
   def update
