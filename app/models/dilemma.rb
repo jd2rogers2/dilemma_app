@@ -4,7 +4,7 @@ class Dilemma < ApplicationRecord
   has_many :factors, through: :options
   has_many :dilemma_tags
   has_many :tags, through: :dilemma_tags
-  before_destroy :delete_options
+  before_destroy :destroy_options
 
   def best_option
     has_most_points = nil
@@ -26,9 +26,9 @@ class Dilemma < ApplicationRecord
   #   self.deadline.strftime("%A, %d %b %Y")
   # end
 
-  def delete_options
+  def destroy_options
     self.options.each do |o|
-      o.delete
+      o.destroy
     end
   end
 end

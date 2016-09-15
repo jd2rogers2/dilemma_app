@@ -28,7 +28,7 @@ class DilemmasController < ApplicationController
     # may have fixed it, still needs testing
     # waiting on options#create to work
     @dilemma = Dilemma.find_by(id: params[:id])
-    @dilemma.delete
+    @dilemma.destroy
     redirect_to dilemmas_path
   end
 

@@ -1,7 +1,7 @@
 class Option < ApplicationRecord
   belongs_to :dilemma
   has_many :factors
-  before_destroy :delete_factors
+  before_destroy :destroy_factors
 
   def factors_attributes=(factor_hash)
     if factor_hash["0"][:name] != ""
@@ -9,10 +9,6 @@ class Option < ApplicationRecord
       self.factors << new_fact
       self.save
     end
-    # @factor = self.factors.create(factor_hash["0"])
-    # @factor.option = self
-    # @factor.save
-    # getting error because parent is not saved
   end
 
   def total_points
@@ -23,9 +19,9 @@ class Option < ApplicationRecord
     sum
   end
 
-  def delete_factors
+  def destroy_factors
     self.factors.each do |f|
-      f.delete
+      f.destroy
     end
   end
 end

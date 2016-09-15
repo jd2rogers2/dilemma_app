@@ -6,9 +6,6 @@ class OptionsController < ApplicationController
   def create
     @option = current_user.current_dilemma.options.create(option_params)
     redirect_to option_path(@option)
-    # maybe not valid because no dilemma_id being passed?
-    # keep getting error cannot call create parent is not saved
-    # referring to calling create in factors_attr= in model
   end
 
   def edit
@@ -26,7 +23,7 @@ class OptionsController < ApplicationController
     # refactor this to use before_destroy :delete_factors
     # do same refactor for dilemma
     @option = Option.find_by(id: params[:id])
-    @option.delete
+    @option.destroy
     redirect_to dilemma_path(current_user.current_dilemma)
   end
 
