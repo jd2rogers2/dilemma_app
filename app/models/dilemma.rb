@@ -1,5 +1,6 @@
 class Dilemma < ApplicationRecord
   validates :name, presence: true
+  validates :deadline, presence: true
   belongs_to :user
   has_many :options
   has_many :factors, through: :options
@@ -23,9 +24,9 @@ class Dilemma < ApplicationRecord
     self.deadline < Time.now ? true : false
   end
 
-  # def pretty_deadline
-  #   self.deadline.strftime("%A, %d %b %Y")
-  # end
+  def pretty_deadline
+    self.deadline.strftime("%A, %d %b %Y")
+  end
 
   def destroy_options
     self.options.each do |o|

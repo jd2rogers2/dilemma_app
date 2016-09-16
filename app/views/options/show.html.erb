@@ -1,4 +1,6 @@
 <h3><%= link_to current_user.current_dilemma.name, dilemma_path(current_user.current_dilemma) %></h3>
+<h5>deadline: <%= current_user.current_dilemma.pretty_deadline %></h5>
+
 <h4><%= @option.name %></h4>
 
 <table>

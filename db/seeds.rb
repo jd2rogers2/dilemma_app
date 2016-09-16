@@ -18,7 +18,7 @@ Factor.create(name: "i had chipotle 3 days ago", option_id: 2, points: -10)
 Factor.create(name: "i love chipotle", option_id: 2, points: 100)
 
 User.create(email: "user_2@email.com", password: "user_2")
-Dilemma.create(name: "what to do for our anniversary", user_id: 2)
+Dilemma.create(name: "what to do for our anniversary", user_id: 2, deadline: Date.new(2017, 1, 10))
 Option.create(name: "mexican restaurant", dilemma_id: 2)
 Option.create(name: "italian restaurant", dilemma_id: 2)
 Option.create(name: "movies", dilemma_id: 2)

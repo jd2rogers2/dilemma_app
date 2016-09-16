@@ -1,4 +1,5 @@
 <h3><%= link_to current_user.current_dilemma.name, dilemma_path(current_user.current_dilemma) %></h3>
+<h5>deadline: <%= current_user.current_dilemma.pretty_deadline %></h5>
 <h4><%= link_to @factor.option.name, option_path(@factor.option) %></h4>
 
 <%= form_for @factor do |f| %>
