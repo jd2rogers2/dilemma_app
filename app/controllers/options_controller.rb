@@ -13,7 +13,10 @@ class OptionsController < ApplicationController
   end
 
   def update
-    binding.pry
+    @option = current_user.current_dilemma.options.find_by(id: params[:id])
+    @option.update(option_params)
+    # currently adding new instead of updating
+    redirect_to option_path(@option)
   end
 
   def show

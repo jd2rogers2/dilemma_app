@@ -5,8 +5,10 @@ class Option < ApplicationRecord
   before_destroy :destroy_factors
 
   def factors_attributes=(factor_hash)
+    # currently adding new instead of updating
+    factor_names = self.factors.collect{|f| f.name}
     factor_hash.each do |num_key, hash|
-      if hash[:name] != "" && hash[:points] != ""
+      if hash[:name] != "" && hash[:points] != "" && !factor_names.include?(hash[:name])
         new_fact = Factor.create(hash)
         self.factors << new_fact
         self.save
