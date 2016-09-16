@@ -15,7 +15,6 @@ class OptionsController < ApplicationController
   def update
     @option = current_user.current_dilemma.options.find_by(id: params[:id])
     @option.update(option_params)
-    # currently adding new instead of updating
     redirect_to option_path(@option)
   end
 
@@ -31,6 +30,6 @@ class OptionsController < ApplicationController
 
   private
   def option_params
-    params.require(:option).permit(:name, factors_attributes: [:name, :points])
+    params.require(:option).permit(:name, factors_attributes: [:name, :points, :id])
   end
 end
