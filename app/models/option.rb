@@ -1,4 +1,5 @@
 class Option < ApplicationRecord
+  validates :name, presence: true
   belongs_to :dilemma
   has_many :factors
   before_destroy :destroy_factors

@@ -1,4 +1,5 @@
 class Dilemma < ApplicationRecord
+  validates :name, presence: true
   belongs_to :user
   has_many :options
   has_many :factors, through: :options
