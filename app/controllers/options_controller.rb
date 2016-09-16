@@ -1,6 +1,6 @@
 class OptionsController < ApplicationController
   def new
-    @option = current_user.current_dilemma.options.new
+    @option = Option.new
   end
 
   def create

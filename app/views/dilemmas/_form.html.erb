@@ -1,0 +1,9 @@
+<%= form_for dilemma do |d| %>
+  <%= d.label :name %>
+  <%= d.text_field :name %><br>
+  <%= d.label :deadline %>
+  <%= d.date_select :deadline, order: [:day, :month, :year] %><br>
+  <%= d.submit %>
+<% end %>
+
+

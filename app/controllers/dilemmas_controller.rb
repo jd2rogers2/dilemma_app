@@ -10,9 +10,13 @@ class DilemmasController < ApplicationController
   end
 
   def edit
+    @dilemma = current_user.current_dilemma
   end
 
   def update
+    @dilemma = current_user.dilemmas.find_by(id: params[:id])
+    @dilemma.update(dilemma_params)
+    redirect_to dilemma_path(@dilemma)
   end
 
   def show
