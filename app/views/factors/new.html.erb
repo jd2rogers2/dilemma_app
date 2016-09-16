@@ -2,6 +2,7 @@
 <h4><%= link_to @factor.option.name, option_path(@factor.option) %></h4>
 
 <%= form_for @factor do |f| %>
+  <%= f.hidden_field :option_id, value: @factor.option.id %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   <%= f.label :points %>
