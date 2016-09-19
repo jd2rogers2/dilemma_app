@@ -1,2 +1,11 @@
-<h1>Tags#show</h1>
-<p>Find me in app/views/tags/show.html.erb</p>
+<h3><%= @tag.name %></h3>
+<br>
+
+dilemmas:
+<ul style="list-style-type: none;">
+  <% @tag.dilemmas.each do |d| %>
+    <li><%= link_to d.name, dilemma_path(d) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "back", tags_path %>
