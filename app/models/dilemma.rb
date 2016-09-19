@@ -9,29 +9,14 @@ class Dilemma < ApplicationRecord
   before_destroy :destroy_options
 
   def tags_attributes=(tag_hash)
-    binding.pry
     tag_hash.each do |num_key, hash|
       if hash[:name] != ""
-      else
+        tag = Tag.create(hash)
+        self.tags << tag
+        self.save
       end
     end
   end
-
-  # def factors_attributes=(factor_hash)
-  #   factor_hash.each do |num_key, hash|
-  #     if hash[:name] != "" && hash[:points] != ""
-  #       if self.factors.include?(Factor.find_by(id: hash[:id]))
-  #         factor = Factor.find_by(id: hash[:id])
-  #         factor.update(name: hash[:name], points: hash[:points])
-  #         factor.save
-  #       else
-  #         new_fact = Factor.create(hash)
-  #         self.factors << new_fact
-  #         self.save
-  #       end
-  #     end
-  #   end
-  # end
 
   def best_option
     has_most_points = nil

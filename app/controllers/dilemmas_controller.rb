@@ -4,7 +4,6 @@ class DilemmasController < ApplicationController
   end
 
   def create
-    binding.pry
     @dilemma = current_user.dilemmas.create(dilemma_params)
     current_user.current_dilemma = @dilemma.id
     redirect_to dilemma_path(@dilemma)
