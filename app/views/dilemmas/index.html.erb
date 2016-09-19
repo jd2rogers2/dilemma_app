@@ -8,12 +8,17 @@
     <tr>
       <td><%= d.name %></td>
       <td><%= d.pretty_deadline %></td>
-      <%# add option in below td for add tags link ??? %>
+      <%# make tags in list below links???%>
       <td><%= d.my_tags %></td>
       <td><%= link_to "view/edit", dilemma_path(d) %></td>
       <td><%= link_to "delete", dilemma_path(d), method: "delete" %></td>
     </tr>
   <% end %>
+  <tr>
+    <td><%= link_to "add new dilemma", new_dilemma_path %></td>
+    <td></td>
+    <td><%= link_to "see all tags", tags_path %></td>
+  </tr>
 </table>
-<p><%= link_to "Add new dilemma", new_dilemma_path %></p>
+
 

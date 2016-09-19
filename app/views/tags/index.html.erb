@@ -1,2 +1,13 @@
-<h1>Tags#index</h1>
-<p>Find me in app/views/tags/index.html.erb</p>
+<table style="margin: auto;">
+  <tr>
+    <th>tag</th>
+    <th>dilemmas</th>
+  </tr>
+  <% @tags.each do |t| %>
+    <tr>
+      <td><%= link_to t.name, tag_path(t) %></td>
+      <%# make this into links for each dilemma??? %>
+      <td><%= t.my_dilemmas %></td>
+    </tr>
+  <% end %>
+</table>
