@@ -1,6 +1,11 @@
 <h3><%= current_user.current_dilemma.name %></h3>
 <h5>deadline: <%= current_user.current_dilemma.pretty_deadline %></h5>
-<p>tags: <%= current_user.current_dilemma.my_tags %> </p>
+<p>
+  tags: 
+  <% current_user.current_dilemma.tags.each do |t| %>
+    <%= link_to t.name, tag_path(t) %>
+  <% end %>
+</p>
 
 <table style="margin: auto;">
   <tr>

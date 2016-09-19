@@ -6,8 +6,11 @@
   <% @tags.each do |t| %>
     <tr>
       <td><%= t.name %></td>
-      <%# make this into links for each dilemma??? %>
-      <td><%= t.my_dilemmas %></td>
+      <td>
+        <% t.dilemmas.each do |d| %>
+          <%= link_to d.name, dilemma_path(d) %>
+        <% end %>
+      </td>
       <td><%= link_to "view/edit", tag_path(t) %></td>
       <td><%= link_to "delete", tag_path(t), method: "delete" %></td>
     </tr>
