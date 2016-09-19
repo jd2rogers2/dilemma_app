@@ -33,4 +33,12 @@ class Dilemma < ApplicationRecord
       o.destroy
     end
   end
+
+  def my_tags
+    array = []
+    self.tags.each do |t|
+      array << t.name
+    end
+    array.join(", ")
+  end
 end

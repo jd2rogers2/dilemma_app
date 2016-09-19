@@ -1,15 +1,19 @@
-<table>
+<table style="margin: auto;">
   <tr>
     <th>dilemma</th>
     <th>deadline</th>
+    <th>tags</th>
   </tr>
   <% current_user.dilemmas.each do |d| %>
     <tr>
       <td><%= d.name %></td>
       <td><%= d.pretty_deadline %></td>
+      <%# add option in below td for add tags link ??? %>
+      <td><%= d.my_tags %></td>
       <td><%= link_to "view/edit", dilemma_path(d) %></td>
       <td><%= link_to "delete", dilemma_path(d), method: "delete" %></td>
     </tr>
   <% end %>
 </table>
 <p><%= link_to "Add new dilemma", new_dilemma_path %></p>
+
