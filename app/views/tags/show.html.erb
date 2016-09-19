@@ -7,5 +7,6 @@ dilemmas:
     <li><%= link_to d.name, dilemma_path(d) %></li>
   <% end %>
 </ul>
+<%= link_to "edit", edit_tag_path(@tag) %> | <%= link_to "delete this tag", tag_path(@tag), method: "delete" %><br><br>
 
 <%= link_to "back", tags_path %>

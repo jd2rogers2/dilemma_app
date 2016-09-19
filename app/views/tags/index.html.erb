@@ -5,9 +5,15 @@
   </tr>
   <% @tags.each do |t| %>
     <tr>
-      <td><%= link_to t.name, tag_path(t) %></td>
+      <td><%= t.name %></td>
       <%# make this into links for each dilemma??? %>
       <td><%= t.my_dilemmas %></td>
+      <td><%= link_to "view/edit", tag_path(t) %></td>
+      <td><%= link_to "delete", tag_path(t), method: "delete" %></td>
     </tr>
   <% end %>
+  <tr>
+    <td><%= link_to "add new tag", new_tag_path %></td>
+    <td><%= link_to "see all dilemmas", dilemmas_path %></td>
+  </tr>
 </table>
