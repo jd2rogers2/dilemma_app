@@ -35,6 +35,6 @@ class DilemmasController < ApplicationController
 
   private
   def dilemma_params
-    params.require(:dilemma).permit(:name, "deadline(3i)", "deadline(2i)", "deadline(1i)", :tag_ids, :tags_attributes)
+    params.require(:dilemma).permit(:name, "deadline(3i)", "deadline(2i)", "deadline(1i)", tags_attributes: [:name], tag_ids: [])
   end
 end

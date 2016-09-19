@@ -5,7 +5,6 @@ class Option < ApplicationRecord
   before_destroy :destroy_factors
 
   def factors_attributes=(factor_hash)
-    # binding.pry
     factor_hash.each do |num_key, hash|
       if hash[:name] != "" && hash[:points] != ""
         if self.factors.include?(Factor.find_by(id: hash[:id]))
