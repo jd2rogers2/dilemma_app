@@ -1,14 +1,14 @@
 <table style="margin: auto;">
   <tr>
     <th>tag</th>
-    <th>dilemmas</th>
+    <th>your dilemmas</th>
   </tr>
   <% @tags.each do |t| %>
     <tr>
       <td><%= t.name %></td>
       <td>
         <% t.dilemmas.each do |d| %>
-          <%= link_to d.name, dilemma_path(d) %>
+          <%= link_to d.name, dilemma_path(d) if d.user == current_user %>
         <% end %>
       </td>
       <td><%= link_to "view/edit", tag_path(t) %></td>
