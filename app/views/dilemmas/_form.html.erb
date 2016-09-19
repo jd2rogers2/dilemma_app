@@ -4,9 +4,9 @@
   <%= d.label :deadline %>
   <%= d.date_select :deadline, order: [:day, :month, :year] %><br>
   <%= d.label "existing tags:" %>
-  <%= collection_check_boxes dilemma, :tag_ids, Tag.all, :id, :name %><br>
+  <%= d.collection_check_boxes :tag_ids, Tag.all, :id, :name %><br>
   <%= d.label "add new tag: " %>
-  <%= d.fields_for :tags do |t| %>
+  <%= d.fields_for :tags, dilemma.tags.new do |t| %>
     <%= t.label :name %>
     <%= t.text_field :name%>
   <% end %><br>
