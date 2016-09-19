@@ -8,16 +8,15 @@
   <%= o.text_field :name %><br>
   <br>
   <%= o.label :factors %><br>
-  <!-- make this logic into a helper??? -->
-  <!-- if statement not evaluating to true -->
   <% if option.id == nil %>
-    <%= o.fields_for :factors do |fact| %>
-      <%= fact.label :name %>
-      <%= fact.text_field :name %>
-      <%= binding.pry %>
-      <%= fact.label :points %>
-      <%= fact.text_field :points %><br>
-    <% end %><br>
+    <% 5.times do %>
+      <%= o.fields_for :factor do |fact| %>
+        <%= fact.label :name %>
+        <%= fact.text_field :name %>
+        <%= fact.label :points %>
+        <%= fact.text_field :points %>
+      <% end %><br>
+    <% end %>
   <% else %>
     <%= o.fields_for :factors, option.factors do |f| %>
       <%= f.label :name %>
