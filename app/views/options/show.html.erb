@@ -10,8 +10,8 @@
   </tr>
   <% @option.factors.each do |fact| %>
     <tr>
-      <td><%= "#{fact.name}"%></td>
-      <td><%= "#{fact.points}" %></td>
+      <td><%= fact.name %></td>
+      <td><%= fact.points %></td>
       <td><%= link_to "delete", factor_path(fact), method: "delete" %></td>
     </tr>
   <% end %>
