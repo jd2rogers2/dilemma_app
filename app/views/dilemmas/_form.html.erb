@@ -3,6 +3,13 @@
   <%= d.text_field :name %><br>
   <%= d.label :deadline %>
   <%= d.date_select :deadline, order: [:day, :month, :year] %><br>
+  <%= d.label "existing tags:" %>
+  <%= collection_check_boxes dilemma, :tag_ids, Tag.all, :id, :name %><br>
+  <%= d.label "add new tag: " %>
+  <%= d.fields_for :tags do |t| %>
+    <%= t.label :name %>
+    <%= t.text_field :name%>
+  <% end %><br>
   <%= d.submit %>
 <% end %>
 

@@ -8,6 +8,10 @@ class Dilemma < ApplicationRecord
   has_many :tags, through: :dilemma_tags
   before_destroy :destroy_options
 
+  def tag_attributes=(hash)
+    binding.pry
+  end
+
   def best_option
     has_most_points = nil
     self.options.each do |opt|
