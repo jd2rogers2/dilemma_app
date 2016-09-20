@@ -1,12 +1,16 @@
 <h3><%= @tag.name %></h3>
-<br>
 
-dilemmas:
-<ul style="list-style-type: none;">
+<table style="margin: auto;">
+  <tr>
+    <th>dilemmas:</th>
+  </tr>
   <% @tag.dilemmas.each do |d| %>
-    <li><%= link_to d.name, dilemma_path(d) %></li>
+    <tr>
+      <td><%= link_to d.name, dilemma_path(d) %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
+<br>
 <%= link_to "edit", edit_tag_path(@tag) %> | <%= link_to "delete this tag", tag_path(@tag), method: "delete" %><br><br>
 
 <%= link_to "back", tags_path %>
