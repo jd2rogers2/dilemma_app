@@ -16,12 +16,13 @@
     <tr>
       <td><%= "#{opt.name}"%></td>
       <td><%= "#{opt.total_points}" %></td>
-      <td><%= link_to "view/edit", option_path(opt) %></td>
+      <td><%= link_to "view/edit", dilemma_option_path(current_user.current_dilemma, opt) %></td>
+      <td><%= link_to "delete", dilemma_option_path(current_user.current_dilemma, opt), method: "delete" %></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to "add new option", new_option_path %>
+<%= link_to "add new option", new_dilemma_option_path(current_user.current_dilemma) %>
 <br>
 
 <%= link_to "edit", edit_dilemma_path(current_user.current_dilemma) %> | <%= link_to "delete this dilemma", dilemma_path(current_user.current_dilemma), method: "delete" %>

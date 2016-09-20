@@ -6,7 +6,7 @@ class OptionsController < ApplicationController
   def create
     @option = current_user.current_dilemma.options.create(option_params)
     valid_factors?
-    redirect_to option_path(@option)
+    redirect_to dilemma_option_path(@option.dilemma, @option)
   end
 
   def edit
@@ -17,7 +17,7 @@ class OptionsController < ApplicationController
     @option = current_user.current_dilemma.options.find_by(id: params[:id])
     @option.update(option_params)
     # valid_factors? not working with update :(
-    redirect_to option_path(@option)
+    redirect_to dilemma_option_path(@option.dilemma, @option)
   end
 
   def show

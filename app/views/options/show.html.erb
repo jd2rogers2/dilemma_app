@@ -12,9 +12,9 @@
     <tr>
       <td><%= fact.name %></td>
       <td><%= fact.points %></td>
-      <td><%= link_to "delete", factor_path(fact), method: "delete" %></td>
+      <td><%= link_to "delete", dilemma_option_factor_path(current_user.current_dilemma, @option, fact), method: "delete" %></td>
     </tr>
   <% end %>
 </table><br>
-<%= link_to "new factor", new_factor_path(option_id: @option.id) %><br>
-<%= link_to "edit", edit_option_path(@option) %> | <%= link_to "delete this option", option_path(@option), method: "delete" %>
+<%= link_to "new factor", new_dilemma_option_factor_path(current_user.current_dilemma, @option, option_id: @option.id) %><br>
+<%= link_to "edit", edit_dilemma_option_path(current_user.current_dilemma, @option) %> | <%= link_to "delete this option", dilemma_option_path(@option), method: "delete" %>

@@ -1,7 +1,7 @@
 <h3><%= link_to current_user.current_dilemma.name, dilemma_path(current_user.current_dilemma) %></h3>
 <p>deadline: <%= current_user.current_dilemma.pretty_deadline %></p>
 
-<%= form_for option do |o| %>
+<%= form_for [current_user.current_dilemma, option] do |o| %>
   <%= o.label :name %>
   <%= o.text_field :name %><br>
   <br>

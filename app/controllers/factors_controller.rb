@@ -7,14 +7,14 @@ class FactorsController < ApplicationController
   def create
     @factor = Factor.create(factor_params)
     flash[:message] = @factor.errors.messages[:points].first
-    redirect_to option_path(@factor.option_id)
+    redirect_to dilemma_option_path(current_user.current_dilemma, @factor.option_id)
   end
 
   def destroy
     @factor = Factor.find_by(id: params[:id])
     @option = @factor.option
     @factor.delete
-    redirect_to option_path(@option)
+    redirect_to dilemma_option_path(@option.dilemma, @option)
   end
 
   private

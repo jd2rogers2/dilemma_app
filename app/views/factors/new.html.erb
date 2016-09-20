@@ -1,8 +1,8 @@
 <h3><%= link_to current_user.current_dilemma.name, dilemma_path(current_user.current_dilemma) %></h3>
 <h5>deadline: <%= current_user.current_dilemma.pretty_deadline %></h5>
-<h4><%= link_to @factor.option.name, option_path(@factor.option) %></h4>
+<h4><%= link_to @factor.option.name, dilemma_option_path(current_user.current_dilemma, @factor.option) %></h4>
 
-<%= form_for @factor do |f| %>
+<%= form_for [current_user.current_dilemma, @factor.option, @factor] do |f| %>
   <%= f.hidden_field :option_id, value: @factor.option.id %>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
