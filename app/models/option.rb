@@ -8,9 +8,13 @@ class Option < ApplicationRecord
     factor_hash.each do |num_key, hash|
       if hash[:name] != "" && hash[:points] != ""
         if self.factors.include?(Factor.find_by(id: hash[:id]))
-          factor = Factor.find_by(id: hash[:id])
-          factor.update(name: hash[:name], points: hash[:points])
-          factor.save
+          if hash[:points].match(/\D+/)
+            self.errors.messages[:factors] = "points entry must only be numbers"
+          else
+            factor = Factor.find_by(id: hash[:id])
+            factor.update(name: hash[:name], points: hash[:points])
+            factor.save
+          end
         else
           new_fact = Factor.create(hash)
           self.factors << new_fact

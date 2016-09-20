@@ -16,7 +16,7 @@ class OptionsController < ApplicationController
   def update
     @option = current_user.current_dilemma.options.find_by(id: params[:id])
     @option.update(option_params)
-    # valid_factors? not working with update :(
+    valid_factors?
     redirect_to dilemma_option_path(@option.dilemma, @option)
   end
 
