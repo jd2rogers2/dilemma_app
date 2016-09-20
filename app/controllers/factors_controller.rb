@@ -1,19 +1,13 @@
 class FactorsController < ApplicationController
-
   def new
     @option = current_user.current_dilemma.options.find_by(id: params[:option_id])
     @factor = @option.factors.new
   end
 
   def create
-    if factor_params[:points].to_i == 0 && factor_params[:points] != "0"
-      flash[:alert] = "numbers only for point entry"
-      @option = Option.find_by(id: factor_params[:option_id])
-      redirect_to new_factor_path(option_id: @option.id, flash: true)
-    else
-      @factor = Factor.create(factor_params)
-      redirect_to option_path(@factor.option_id)
-    end
+    @factor = Factor.create(factor_params)
+    flash[:message] = @factor.errors.messages[:points].first
+    redirect_to option_path(@factor.option_id)
   end
 
   def destroy

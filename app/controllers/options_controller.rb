@@ -5,6 +5,7 @@ class OptionsController < ApplicationController
 
   def create
     @option = current_user.current_dilemma.options.create(option_params)
+    valid_factors?
     redirect_to option_path(@option)
   end
 
@@ -15,6 +16,8 @@ class OptionsController < ApplicationController
   def update
     @option = current_user.current_dilemma.options.find_by(id: params[:id])
     @option.update(option_params)
+    # valid_factors?
+    # not working with update :(
     redirect_to option_path(@option)
   end
 
@@ -31,5 +34,15 @@ class OptionsController < ApplicationController
   private
   def option_params
     params.require(:option).permit(:name, factors_attributes: [:name, :points, :id])
+  end
+
+  def valid_factors?
+    if @option.errors.messages[:factors] == ["is invalid"]
+      @option.factors.each do |f|
+        f.delete if f.invalid?
+      end
+      @option.save
+      flash[:message] = "points entry must only be numbers"
+    end
   end
 end
