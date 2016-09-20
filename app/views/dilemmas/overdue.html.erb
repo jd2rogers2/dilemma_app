@@ -1,11 +1,11 @@
-<table style="margin: auto;">
+<table style="margin: auto;" >
   <tr>
     <th>dilemma</th>
     <th>deadline</th>
     <th>tags</th>
   </tr>
-  <% current_user.dilemmas.each do |d| %>
-    <tr>
+  <tr>
+    <% current_user.overdue_dilemmas.each do |d| %>
       <td><%= d.name %></td>
       <td><%= d.pretty_deadline %></td>
       <td>
@@ -15,13 +15,6 @@
       </td>
       <td><%= link_to "view/edit", dilemma_path(d) %></td>
       <td><%= link_to "delete", dilemma_path(d), method: "delete" %></td>
-    </tr>
-  <% end %>
-  <tr>
-    <td><%= link_to "add new dilemma", new_dilemma_path %></td>
-    <td><%= link_to "see all overdue dilemmas", overdue_path %></td>
-    <td><%= link_to "see all tags", tags_path %></td>
+    <% end %>
   </tr>
 </table>
-
-

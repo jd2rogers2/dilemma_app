@@ -32,6 +32,9 @@ class DilemmasController < ApplicationController
     redirect_to dilemmas_path
   end
 
+  def overdue
+  end
+
   private
   def dilemma_params
     params.require(:dilemma).permit(:name, "deadline(3i)", "deadline(2i)", "deadline(1i)", tags_attributes: [:name], tag_ids: [])
