@@ -1,7 +1,5 @@
-<h3><%= current_user.current_dilemma.name %></h3>
-<h5>deadline: <%= current_user.current_dilemma.pretty_deadline %></h5>
-
-<%= link_to "back", dilemma_path(current_user.current_dilemma) %><br>
+<h3><%= link_to current_user.current_dilemma.name, dilemma_path(current_user.current_dilemma) %></h3>
+<p>deadline: <%= current_user.current_dilemma.pretty_deadline %></p>
 
 <%= form_for option do |o| %>
   <%= o.label :name %>
