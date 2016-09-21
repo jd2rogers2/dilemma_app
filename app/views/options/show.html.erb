@@ -1,5 +1,5 @@
-<h3><%= link_to current_user.current_dilemma.name, dilemma_path(current_user.current_dilemma) %></h3>
-<h5>deadline: <%= current_user.current_dilemma.pretty_deadline %></h5>
+<h3><%= link_to @option.dilemma.name, dilemma_path(@option.dilemma) %></h3>
+<h5>user: <%= @option.dilemma.user.email %> | deadline: <%= @option.dilemma.pretty_deadline %></h5>
 
 <h4><%= @option.name %></h4>
 
@@ -17,6 +17,10 @@
       <% end %>
     </tr>
   <% end %>
+  <tr>
+    <th>total</th>
+    <th><%= @option.total_points %></th>
+  </tr>
 </table><br>
 
 <% if @option.dilemma.user == current_user %>

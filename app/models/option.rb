@@ -8,8 +8,9 @@ class Option < ApplicationRecord
     factor_hash.each do |num_key, hash|
       if hash[:name] != "" && hash[:points] != ""
         if self.factors.include?(Factor.find_by(id: hash[:id]))
-          if hash[:points].match(/\D+/)
-            self.errors.messages[:factors] = "points entry must only be numbers"
+          if !hash[:points].match(/-?\d+/)
+            self.errors.messages[:factors] = ["is invalid"]
+            # this line isn't working
           else
             factor = Factor.find_by(id: hash[:id])
             factor.update(name: hash[:name], points: hash[:points])

@@ -46,6 +46,6 @@ class OptionsController < ApplicationController
   end
 
   def set_option
-    @option = current_user.current_dilemma.options.find_by(id: params[:id])
+    @option = Option.find_by(id: params[:id])
   end
 end
