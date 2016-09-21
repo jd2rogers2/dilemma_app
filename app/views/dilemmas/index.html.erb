@@ -5,7 +5,7 @@
     <th>tags</th>
   </tr>
   <% current_user.dilemmas.each do |d| %>
-    <%= render partial: 'dilemmas/table', locals: {d: d} %>
+    <%= render partial: 'layouts/table', locals: {d: d} %>
   <% end %>
   <tr>
     <td><%= link_to "add new dilemma", new_dilemma_path %></td>

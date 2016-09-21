@@ -3,11 +3,11 @@
 <table style="margin: auto;">
   <tr>
     <th>dilemmas:</th>
+    <th>deadline</th>
+    <th>all tags</th>
   </tr>
   <% @tag.dilemmas.each do |d| %>
-    <tr>
-      <td><%= link_to d.name, dilemma_path(d) %></td>
-    </tr>
+    <%= render partial: 'layouts/table', locals: {d: d} %>
   <% end %>
 </table>
 <br>
