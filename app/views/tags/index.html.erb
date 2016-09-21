@@ -8,7 +8,7 @@
       <td><%= t.name %></td>
       <td>
         <% t.dilemmas.each do |d| %>
-          <%= link_to d.name, dilemma_path(d) if d.user == current_user %>
+          <%= link_to d.name, dilemma_path(d) %>
         <% end %>
       </td>
       <td><%= link_to "view", tag_path(t) %></td>

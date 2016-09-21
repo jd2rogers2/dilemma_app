@@ -1,5 +1,5 @@
 <tr>
-  <td><%= d.name %></td>
+  <td><%= link_to d.name, dilemma_path(d) %></td>
   <td><%= d.pretty_deadline %></td>
   <td>
     <% d.tags.each do |t| %>

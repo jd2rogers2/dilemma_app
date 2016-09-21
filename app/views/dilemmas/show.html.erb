@@ -1,5 +1,5 @@
 <h3><%= @dilemma.name %></h3>
-<h5>deadline: <%= @dilemma.pretty_deadline %></h5>
+<h5>user: <%= @dilemma.user.email%> | deadline: <%= @dilemma.pretty_deadline %></h5>
 <p>
   tags: 
   <% @dilemma.tags.each do |t| %>
@@ -36,15 +36,20 @@
   </tr>
   <% @dilemma.comments.each do |c| %>
     <tr>
-      <td><%= c.user.name %></td>
+      <td><%= c.user.email %></td>
       <td><%= c.content %></td>
+      <% if @dilemma.user == current_user %>
+        <td><%= link_to "delete", comment_path(c), method: "delete" %></td>
+      <% end %>
     </tr>
   <% end %>
   <tr>
     <td></td>
     <td>
-      <%= form_for @dilemma.comment.new do |com| %>
-        <%= text_area(com, :content) %>
+      <%= form_for @dilemma.comments.new do |com| %>
+        <%= com.hidden_field :dilemma_id, value: @dilemma.id %>
+        <%= com.hidden_field :user_id, value: current_user.id %>
+        <%= text_area :comment, :content, value: "add a new comment" %><br>
         <%= com.submit %>
       <% end %>
     </td>

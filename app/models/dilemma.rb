@@ -1,11 +1,14 @@
 class Dilemma < ApplicationRecord
   validates :name, presence: true
   validates :deadline, presence: true
+
+  has_many :comments
   belongs_to :user
   has_many :options
   has_many :factors, through: :options
   has_many :dilemma_tags
   has_many :tags, through: :dilemma_tags
+
   before_destroy :destroy_options
 
   def tags_attributes=(tag_hash)
