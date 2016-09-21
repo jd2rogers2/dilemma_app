@@ -1,8 +1,8 @@
-<h3><%= current_user.current_dilemma.name %></h3>
-<h5>deadline: <%= current_user.current_dilemma.pretty_deadline %></h5>
+<h3><%= @dilemma.name %></h3>
+<h5>deadline: <%= @dilemma.pretty_deadline %></h5>
 <p>
   tags: 
-  <% current_user.current_dilemma.tags.each do |t| %>
+  <% @dilemma.tags.each do |t| %>
     <%= link_to t.name, tag_path(t) %>
   <% end %>
 </p>
@@ -12,17 +12,41 @@
     <th>options</th>
     <th>total points</th>
   </tr>
-  <% current_user.current_dilemma.options.each do |opt| %>
+  <% @dilemma.options.each do |opt| %>
     <tr>
       <td><%= "#{opt.name}"%></td>
       <td><%= "#{opt.total_points}" %></td>
-      <td><%= link_to "view/edit", dilemma_option_path(current_user.current_dilemma, opt) %></td>
-      <td><%= link_to "delete", dilemma_option_path(current_user.current_dilemma, opt), method: "delete" %></td>
+      <td><%= link_to "view", dilemma_option_path(@dilemma, opt) %></td>
+      <td><%= link_to "delete", dilemma_option_path(@dilemma, opt), method: "delete" if @dilemma.user == current_user %></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to "add new option", new_dilemma_option_path(current_user.current_dilemma) %>
-<br>
+<% if @dilemma.user == current_user %>
+  <%= link_to "add new option", new_dilemma_option_path(@dilemma) %>
+  <br>
 
-<%= link_to "edit", edit_dilemma_path(current_user.current_dilemma) %> | <%= link_to "delete this dilemma", dilemma_path(current_user.current_dilemma), method: "delete" %>
+  <%= link_to "edit", edit_dilemma_path(current_user.current_dilemma) %> | <%= link_to "delete this dilemma", dilemma_path(@dilemma), method: "delete" %>
+<% end %>
+
+<table style="margin: auto;">
+  <tr>
+    <th>user</th>
+    <th>comment</th>
+  </tr>
+  <% @dilemma.comments.each do |c| %>
+    <tr>
+      <td><%= c.user.name %></td>
+      <td><%= c.content %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td>
+      <%= form_for @dilemma.comment.new do |com| %>
+        <%= text_area(com, :content) %>
+        <%= com.submit %>
+      <% end %>
+    </td>
+  </tr>
+</table>

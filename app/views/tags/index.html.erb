@@ -11,8 +11,7 @@
           <%= link_to d.name, dilemma_path(d) if d.user == current_user %>
         <% end %>
       </td>
-      <td><%= link_to "view/edit", tag_path(t) %></td>
-      <td><%= link_to "delete", tag_path(t), method: "delete" %></td>
+      <td><%= link_to "view", tag_path(t) %></td>
     </tr>
   <% end %>
   <tr>

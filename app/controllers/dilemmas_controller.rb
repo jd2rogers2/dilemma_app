@@ -20,14 +20,17 @@ class DilemmasController < ApplicationController
   end
 
   def show
-    current_user.current_dilemma = current_user.dilemmas.find_by(id: params[:id])
+    set_dilemma
+    if @dilemma.user == current_user
+      current_user.current_dilemma = current_user.dilemmas.find_by(id: params[:id])
+    end
   end
 
   def index
   end
 
   def destroy
-    @dilemma = Dilemma.find_by(id: params[:id])
+    set_dilemma
     @dilemma.destroy
     redirect_to dilemmas_path
   end
@@ -38,5 +41,9 @@ class DilemmasController < ApplicationController
   private
   def dilemma_params
     params.require(:dilemma).permit(:name, "deadline(3i)", "deadline(2i)", "deadline(1i)", tags_attributes: [:name], tag_ids: [])
+  end
+
+  def set_dilemma
+    @dilemma = Dilemma.find_by(id: params[:id])
   end
 end

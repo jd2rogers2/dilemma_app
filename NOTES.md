@@ -1,3 +1,10 @@
-abstract flash error messages out to helpers and use before_action
+make dilemmas viewable by all users
+ - change dilemma#show to take in id
+ - change all links to show to pass in dilemma's id
+ - remove all edit links unless current_user == dilemma.user
 
-valid_factors? not working with update :( from option controller
+adding comments
+comments model and migration content:text user_id:integer dilemma_id:integer
+belongs_to :user
+
+

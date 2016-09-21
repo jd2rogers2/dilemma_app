@@ -6,6 +6,8 @@
       <%= link_to t.name, tag_path(t) %>
     <% end %>
   </td>
-  <td><%= link_to "view/edit", dilemma_path(d) %></td>
-  <td><%= link_to "delete", dilemma_path(d), method: "delete" %></td>
+  <% if d.user == current_user %>
+    <td><%= link_to "view/edit", dilemma_path(d) %></td>
+    <td><%= link_to "delete", dilemma_path(d), method: "delete" %></td>
+  <% end %>
 </tr>
