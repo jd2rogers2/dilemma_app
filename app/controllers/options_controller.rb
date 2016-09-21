@@ -10,22 +10,22 @@ class OptionsController < ApplicationController
   end
 
   def edit
-    @option = current_user.current_dilemma.options.find_by(id: params[:id])
+    set_option
   end
 
   def update
-    @option = current_user.current_dilemma.options.find_by(id: params[:id])
+    set_option
     @option.update(option_params)
     valid_factors?
     redirect_to dilemma_option_path(@option.dilemma, @option)
   end
 
   def show
-    @option = current_user.current_dilemma.options.find_by(id: params[:id])
+    set_option
   end
 
   def destroy
-    @option = Option.find_by(id: params[:id])
+    set_option
     @option.destroy
     redirect_to dilemma_path(current_user.current_dilemma)
   end
@@ -43,5 +43,9 @@ class OptionsController < ApplicationController
       @option.save
       flash[:message] = "points entry must only be numbers"
     end
+  end
+
+  def set_option
+    @option = current_user.current_dilemma.options.find_by(id: params[:id])
   end
 end

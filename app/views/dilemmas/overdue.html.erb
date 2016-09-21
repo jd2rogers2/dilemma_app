@@ -4,17 +4,7 @@
     <th>deadline</th>
     <th>tags</th>
   </tr>
-  <tr>
-    <% current_user.overdue_dilemmas.each do |d| %>
-      <td><%= d.name %></td>
-      <td><%= d.pretty_deadline %></td>
-      <td>
-        <% d.tags.each do |t| %>
-          <%= link_to t.name, tag_path(t) %>
-        <% end %>
-      </td>
-      <td><%= link_to "view/edit", dilemma_path(d) %></td>
-      <td><%= link_to "delete", dilemma_path(d), method: "delete" %></td>
-    <% end %>
-  </tr>
+  <% current_user.overdue_dilemmas.each do |d| %>
+    <%= render partial: 'dilemmas/table', locals: {d: d} %>
+  <% end %>
 </table>

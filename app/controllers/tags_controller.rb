@@ -9,17 +9,17 @@ class TagsController < ApplicationController
   end
 
   def edit
-    @tag = Tag.find_by(id: params[:id])
+    set_tag
   end
 
   def update
-    @tag = Tag.find_by(id: params[:id])
+    set_tag
     @tag.update(tag_params)
     redirect_to tag_path(@tag)
   end
 
   def show
-    @tag = Tag.find_by(id: params[:id])
+    set_tag
   end
 
   def index
@@ -27,7 +27,7 @@ class TagsController < ApplicationController
   end
 
   def destroy
-    @tag = Tag.find_by(id: params[:id])
+    set_tag
     @tag.destroy
     redirect_to tags_path
   end
@@ -35,5 +35,9 @@ class TagsController < ApplicationController
   private
   def tag_params
     params.require(:tag).permit(:name)
+  end
+
+  def set_tag
+    @tag = Tag.find_by(id: params[:id])
   end
 end

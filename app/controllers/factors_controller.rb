@@ -12,9 +12,8 @@ class FactorsController < ApplicationController
 
   def destroy
     @factor = Factor.find_by(id: params[:id])
-    @option = @factor.option
     @factor.delete
-    redirect_to dilemma_option_path(@option.dilemma, @option)
+    redirect_to dilemma_option_path(@factor.option.dilemma, @factor.option)
   end
 
   private
