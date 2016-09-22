@@ -12,7 +12,7 @@
     <tr>
       <td><%= fact.name %></td>
       <td><%= fact.points %></td>
-      <% if @option.dilemma.author == current_user %>
+      <% if author_check(@option.dilemma.author) %>
         <td><%= link_to "delete", dilemma_option_factor_path(current_user.current_dilemma, @option, fact), method: "delete" %></td>
       <% end %>
     </tr>
@@ -23,7 +23,7 @@
   </tr>
 </table><br>
 
-<% if @option.dilemma.author == current_user %>
+<% if author_check(@option.dilemma.author) %>
   <%= link_to "new factor", new_dilemma_option_factor_path(current_user.current_dilemma, @option, option_id: @option.id) %><br>
   <%= link_to "edit", edit_dilemma_option_path(current_user.current_dilemma, @option) %> | <%= link_to "delete this option", dilemma_option_path(@option), method: "delete" %>
 <% end %>

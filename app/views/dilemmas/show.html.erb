@@ -11,12 +11,12 @@
       <td><%= "#{opt.name}"%></td>
       <td><%= "#{opt.total_points}" %></td>
       <td><%= link_to "view", dilemma_option_path(@dilemma, opt) %></td>
-      <td><%= link_to "delete", dilemma_option_path(@dilemma, opt), method: "delete" if @dilemma.author == current_user %></td>
+      <td><%= link_to "delete", dilemma_option_path(@dilemma, opt), method: "delete" if author_check(@dilemma.author) %></td>
     </tr>
   <% end %>
 </table>
 
-<% if @dilemma.author == current_user %>
+<% if author_check(@dilemma.author) %>
   <%= link_to "add new option", new_dilemma_option_path(@dilemma) %>
   <br>
 

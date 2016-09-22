@@ -7,36 +7,14 @@
   <br>
   <%= o.label :factors %><br>
   <% if option.id == nil %>
-    <%= o.fields_for :factors, Factor.new do |fact| %>
-      <%= fact.label :name %>
-      <%= fact.text_field :name %>
-      <%= fact.label :points %>
-      <%= fact.text_field :points %>
-    <% end %><br>
-    <%= o.fields_for :factors, Factor.new do |fact| %>
-      <%= fact.label :name %>
-      <%= fact.text_field :name %>
-      <%= fact.label :points %>
-      <%= fact.text_field :points %>
-    <% end %><br>
-    <%= o.fields_for :factors, Factor.new do |fact| %>
-      <%= fact.label :name %>
-      <%= fact.text_field :name %>
-      <%= fact.label :points %>
-      <%= fact.text_field :points %>
-    <% end %><br>
-    <%= o.fields_for :factors, Factor.new do |fact| %>
-      <%= fact.label :name %>
-      <%= fact.text_field :name %>
-      <%= fact.label :points %>
-      <%= fact.text_field :points %>
-    <% end %><br>
-    <%= o.fields_for :factors, Factor.new do |fact| %>
-      <%= fact.label :name %>
-      <%= fact.text_field :name %>
-      <%= fact.label :points %>
-      <%= fact.text_field :points %>
-    <% end %><br>
+    <% 5.times do %>
+      <%= o.fields_for :factors, Factor.new do |fact| %>
+        <%= fact.label :name %>
+        <%= fact.text_field :name %>
+        <%= fact.label :points %>
+        <%= fact.text_field :points %>
+      <% end %><br>
+    <% end %>
   <% else %>
     <%= o.fields_for :factors, option.factors do |f| %>
       <%= f.label :name %>
