@@ -1,6 +1,6 @@
 <h3><%= @dilemma.name %></h3>
 <h5>author: <%= @dilemma.author.email%> | deadline: <%= @dilemma.pretty_deadline %></h5>
-<p>tags: <% render 'layouts/dilemma_tags', {dilemma: @dilemma} %></p>
+<p>tags: <%= render 'layouts/dilemma_tags', {dilemma: @dilemma} %></p>
 
 <table style="margin: auto;">
   <tr>
