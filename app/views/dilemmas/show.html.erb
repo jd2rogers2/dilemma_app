@@ -34,7 +34,7 @@
     <tr>
       <td><%= c.commenter.email %></td>
       <td><%= c.content %></td>
-      <% if @dilemma.author == current_user %>
+      <% if author_check(@dilemma.author) %>
         <td><%= link_to "delete", comment_path(c), method: "delete" %></td>
       <% end %>
     </tr>
