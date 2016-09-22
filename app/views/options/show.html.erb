@@ -1,5 +1,5 @@
-<h3><%= link_to @option.dilemma.name, dilemma_path(@option.dilemma) %></h3>
-<h5>author: <%= @option.dilemma.author.email %> | deadline: <%= @option.dilemma.pretty_deadline %></h5>
+<%= render 'layouts/dilemma_header', {dilemma: @option.dilemma} %>
+<p>tags: <%= render 'layouts/dilemma_tags', {dilemma: @option.dilemma} %></p>
 
 <h4><%= @option.name %></h4>
 

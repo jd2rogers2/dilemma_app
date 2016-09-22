@@ -1,5 +1,4 @@
-<h3><%= @dilemma.name %></h3>
-<h5>author: <%= @dilemma.author.email%> | deadline: <%= @dilemma.pretty_deadline %></h5>
+<%= render 'layouts/dilemma_header', {dilemma: @dilemma} %>
 <p>tags: <%= render 'layouts/dilemma_tags', {dilemma: @dilemma} %></p>
 
 <table style="margin: auto;">

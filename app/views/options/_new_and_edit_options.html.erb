@@ -1,5 +1,5 @@
-<h3><%= link_to current_user.current_dilemma.name, dilemma_path(current_user.current_dilemma) %></h3>
-<p>deadline: <%= current_user.current_dilemma.pretty_deadline %></p>
+<%= render 'layouts/dilemma_header', {dilemma: current_user.current_dilemma} %>
+<p>tags: <%= render 'layouts/dilemma_tags', {dilemma: current_user.current_dilemma} %></p>
 
 <%= form_for [current_user.current_dilemma, option] do |o| %>
   <%= o.label :name %>
