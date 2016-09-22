@@ -1,4 +1,6 @@
 class DilemmasController < ApplicationController
+  before_action :require_login, only: [:new, :edit, :show, :index, :overdue]
+
   def new
     @dilemma = Dilemma.new
   end

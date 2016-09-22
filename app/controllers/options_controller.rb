@@ -1,4 +1,5 @@
 class OptionsController < ApplicationController
+  before_action :require_login, only: [:new, :edit, :show]
   def new
     @option = Option.new
   end

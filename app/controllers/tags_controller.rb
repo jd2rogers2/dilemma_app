@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  before_action :require_login, only: [:new, :edit, :show, :index]
   def new
     @tag = Tag.new
   end

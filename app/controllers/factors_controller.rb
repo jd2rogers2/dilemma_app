@@ -1,4 +1,5 @@
 class FactorsController < ApplicationController
+  before_action :require_login, only: [:new]
   def new
     @option = current_user.current_dilemma.options.find_by(id: params[:option_id])
     @factor = @option.factors.new
