@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
-  has_many :comments
-  has_many :dilemmas
+  has_many :comments, foreign_key: "commenter_id"
+  has_many :dilemmas, foreign_key: "author_id"
 
   def overdue_dilemmas
     self.dilemmas.collect {|d| d if d.overdue?}

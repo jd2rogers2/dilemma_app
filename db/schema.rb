@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20160921181736) do
 
   create_table "comments", force: :cascade do |t|
     t.text    "content"
-    t.integer "user_id"
+    t.integer "commenter_id"
     t.integer "dilemma_id"
   end
 
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160921181736) do
 
   create_table "dilemmas", force: :cascade do |t|
     t.string  "name"
-    t.integer "user_id"
+    t.integer "author_id"
     t.date    "deadline"
   end
 

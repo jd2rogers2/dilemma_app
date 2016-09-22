@@ -3,7 +3,8 @@ class Dilemma < ApplicationRecord
   validates :deadline, presence: true
 
   has_many :comments
-  belongs_to :user
+  has_many :commenters, class_name: "User", through: :comments
+  belongs_to :author, class_name: "User"
   has_many :options
   has_many :factors, through: :options
   has_many :dilemma_tags

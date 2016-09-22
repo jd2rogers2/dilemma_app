@@ -9,7 +9,7 @@ class Option < ApplicationRecord
       if hash[:name] != "" && hash[:points] != ""
         if self.factors.include?(Factor.find_by(id: hash[:id]))
           if !hash[:points].match(/-?\d+/)
-            self.errors.messages[:factors] = ["is invalid"]
+            errors.add(:messages, :factors)
             # this line isn't working
           else
             factor = Factor.find_by(id: hash[:id])
