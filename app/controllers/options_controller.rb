@@ -6,8 +6,7 @@ class OptionsController < ApplicationController
 
   def create
     @option = current_user.current_dilemma.options.create(option_params)
-    valid_factors?
-    redirect_to dilemma_option_path(@option.dilemma, @option)
+    valid_option?
   end
 
   def edit
@@ -17,8 +16,7 @@ class OptionsController < ApplicationController
   def update
     set_option
     @option.update(option_params)
-    valid_factors?
-    redirect_to dilemma_option_path(@option.dilemma, @option)
+    valid_option?
   end
 
   def show
@@ -34,6 +32,22 @@ class OptionsController < ApplicationController
   private
   def option_params
     params.require(:option).permit(:name, factors_attributes: [:name, :points, :id])
+  end
+
+  def valid_option?
+    if @option.invalid?
+      invalid_option
+    else
+      valid_factors?
+      redirect_to dilemma_option_path(@option.dilemma, @option)
+    end
+  end
+
+  def invalid_option
+    if @option.errors.messages[:name] == ["can't be blank"]
+      flash[:message] = "option name cannot be blank"
+      redirect_to dilemma_path(@option.dilemma)
+    end
   end
 
   def valid_factors?
