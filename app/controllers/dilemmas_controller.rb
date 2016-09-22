@@ -21,7 +21,7 @@ class DilemmasController < ApplicationController
 
   def show
     set_dilemma
-    if @dilemma.user == current_user
+    if @dilemma.author == current_user
       current_user.current_dilemma = current_user.dilemmas.find_by(id: params[:id])
     end
   end

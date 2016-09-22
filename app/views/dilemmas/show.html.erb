@@ -1,5 +1,5 @@
 <h3><%= @dilemma.name %></h3>
-<h5>user: <%= @dilemma.user.email%> | deadline: <%= @dilemma.pretty_deadline %></h5>
+<h5>author: <%= @dilemma.author.email%> | deadline: <%= @dilemma.pretty_deadline %></h5>
 <p>
   tags: 
   <% @dilemma.tags.each do |t| %>
@@ -17,12 +17,12 @@
       <td><%= "#{opt.name}"%></td>
       <td><%= "#{opt.total_points}" %></td>
       <td><%= link_to "view", dilemma_option_path(@dilemma, opt) %></td>
-      <td><%= link_to "delete", dilemma_option_path(@dilemma, opt), method: "delete" if @dilemma.user == current_user %></td>
+      <td><%= link_to "delete", dilemma_option_path(@dilemma, opt), method: "delete" if @dilemma.author == current_user %></td>
     </tr>
   <% end %>
 </table>
 
-<% if @dilemma.user == current_user %>
+<% if @dilemma.author == current_user %>
   <%= link_to "add new option", new_dilemma_option_path(@dilemma) %>
   <br>
 
@@ -38,9 +38,9 @@
   </tr>
   <% @dilemma.comments.each do |c| %>
     <tr>
-      <td><%= c.user.email %></td>
+      <td><%= c.commenter.email %></td>
       <td><%= c.content %></td>
-      <% if @dilemma.user == current_user %>
+      <% if @dilemma.author == current_user %>
         <td><%= link_to "delete", comment_path(c), method: "delete" %></td>
       <% end %>
     </tr>

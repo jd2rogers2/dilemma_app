@@ -5,6 +5,6 @@
     <th>tags</th>
   </tr>
   <% current_user.overdue_dilemmas.each do |d| %>
-    <%= render partial: 'layouts/table', locals: {d: d} %>
+    <%= render 'layouts/table', {d: d} %>
   <% end %>
 </table>

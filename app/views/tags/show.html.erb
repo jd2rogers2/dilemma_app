@@ -7,7 +7,7 @@
     <th>all tags</th>
   </tr>
   <% @tag.dilemmas.each do |d| %>
-    <%= render partial: 'layouts/table', locals: {d: d} %>
+    <%= render 'layouts/table', {d: d} %>
   <% end %>
 </table>
 <br>
