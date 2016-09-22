@@ -6,21 +6,56 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      table {
+        margin: auto;
+      }
+
+      body {
+        width: 75%;
+        margin: auto;
+        border-left: solid black 1px;
+        border-right: solid black 1px;
+        border-radius: 10px;
+      }
+
+      .nav {
+        background-color: #ccc;
+      }
+
+      .flash_messages {
+        background-color: #ccc;
+      }
+
+      #center {
+        text-align: center;
+      }
+
+      h1 {
+        font-family: Brush Script MT, cursive;
+        text-align: center;
+        font-size: 3em;
+      }
+
+      footer p {
+        text-align: center;
+      }
+    </style>
   </head>
 
-  <body style="width:75%; margin:auto; border-left:solid black 1px; border-right:solid black 1px; border-radius:10px;">
-    <div class="nav" style="background-color:#ccc;">
-      <h1 style="font-family: Brush Script MT, cursive; text-align:center; font-size: 3em;">can't make up your mind?</h1>
+  <body>
+    <div class="nav">
+      <h1>can't make up your mind?</h1>
       <%= render 'layouts/navigation' %><br>
     </div> <!-- nav -->
 
-    <div id="center" style="text-align: center;">
+    <div id="center">
       <%= yield %><br>
     </div> <!-- center -->
-    <div class="flash_messages" style="background-color:#ccc;">
+    <div class="flash_messages">
       <%= render 'layouts/flash_messages' %>
     <footer>
-      <p style="text-align:center;">by jd2rogers2 - copywrite 2016</p>
+      <p>by jd2rogers2 - copywrite 2016</p>
     </footer>
     </div> <!-- flash_messages -->
   </body>
