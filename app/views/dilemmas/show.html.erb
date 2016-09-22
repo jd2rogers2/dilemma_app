@@ -44,7 +44,7 @@
     <td>
       <%= form_for @dilemma.comments.new do |com| %>
         <%= com.hidden_field :dilemma_id, value: @dilemma.id %>
-        <%= com.hidden_field :user_id, value: current_user.id %>
+        <%= com.hidden_field :commenter_id, value: current_user.id %>
         <%= text_area :comment, :content, value: "add a new comment" %><br>
         <%= com.submit %>
       <% end %>
