@@ -1,5 +1,5 @@
 class Option < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: {name: "option name must not be blank"}
   belongs_to :dilemma
   has_many :factors
   before_destroy :destroy_factors
@@ -8,14 +8,9 @@ class Option < ApplicationRecord
     factor_hash.each do |num_key, hash|
       if hash[:name] != "" && hash[:points] != ""
         if self.factors.include?(Factor.find_by(id: hash[:id]))
-          if !hash[:points].match(/-?\d+/)
-            errors.add(:messages, :factors)
-            # this line isn't working
-          else
-            factor = Factor.find_by(id: hash[:id])
-            factor.update(name: hash[:name], points: hash[:points])
-            factor.save
-          end
+          factor = Factor.find_by(id: hash[:id])
+          factor.update(name: hash[:name], points: hash[:points])
+          factor.save
         else
           new_fact = Factor.create(hash)
           self.factors << new_fact

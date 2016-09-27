@@ -7,8 +7,7 @@ class DilemmasController < ApplicationController
 
   def create
     @dilemma = current_user.dilemmas.create(dilemma_params)
-    current_user.current_dilemma = @dilemma.id
-    redirect_to dilemma_path(@dilemma)
+    validate_dilemma
   end
 
   def edit
@@ -16,9 +15,9 @@ class DilemmasController < ApplicationController
   end
 
   def update
-    @dilemma = current_user.dilemmas.find_by(id: params[:id])
+    set_dilemma
     @dilemma.update(dilemma_params)
-    redirect_to dilemma_path(@dilemma)
+    validate_dilemma
   end
 
   def show
@@ -47,5 +46,19 @@ class DilemmasController < ApplicationController
 
   def set_dilemma
     @dilemma = Dilemma.find_by(id: params[:id])
+  end
+
+  def validate_dilemma
+    if @dilemma.invalid?
+      flash[:message] = @dilemma.errors.details[:name].first[:name]
+      if @dilemma.id
+        redirect_to edit_dilemma_path(@dilemma)
+      else
+        redirect_to new_dilemma_path
+      end
+    else
+      current_user.current_dilemma = @dilemma.id
+      redirect_to dilemma_path(@dilemma)
+    end
   end
 end

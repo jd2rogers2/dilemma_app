@@ -1,5 +1,5 @@
 class Dilemma < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: {name: "dilemma name must not be blank"}
   validates :deadline, presence: true
 
   has_many :comments

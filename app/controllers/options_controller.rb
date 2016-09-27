@@ -6,7 +6,7 @@ class OptionsController < ApplicationController
 
   def create
     @option = current_user.current_dilemma.options.create(option_params)
-    valid_option?
+    validate_option_and_factors
   end
 
   def edit
@@ -16,7 +16,7 @@ class OptionsController < ApplicationController
   def update
     set_option
     @option.update(option_params)
-    valid_option?
+    validate_option_and_factors
   end
 
   def show
@@ -34,33 +34,28 @@ class OptionsController < ApplicationController
     params.require(:option).permit(:name, factors_attributes: [:name, :points, :id])
   end
 
-  def valid_option?
-    if @option.invalid?
-      invalid_option
-    else
-      valid_factors?
-      redirect_to dilemma_option_path(@option.dilemma, @option)
-    end
-  end
-
-  def invalid_option
-    if @option.errors.messages[:name] == ["can't be blank"]
-      flash[:message] = "option name cannot be blank"
-      redirect_to dilemma_path(@option.dilemma)
-    end
-  end
-
-  def valid_factors?
-    if @option.errors.messages[:factors] == ["is invalid"]
-      @option.factors.each do |f|
-        f.delete if f.invalid?
-      end
-      @option.save
-      flash[:message] = "points entry must only be numbers"
-    end
-  end
-
   def set_option
     @option = Option.find_by(id: params[:id])
+  end
+
+  def validate_option_and_factors
+    if @option.invalid? && @option.name != ""
+      @option.factors.each do |fact|
+        if fact.invalid?
+          @option.factors.delete(fact)
+          flash[:message] = fact.errors.messages[:points].first
+        else
+          fact.option_id = @option.id
+          fact.save
+        end
+      end
+      @option.save
+      redirect_to edit_dilemma_option_path(@option.dilemma, @option)
+    elsif @option.name == ""
+      flash[:message] = @option.errors.details[:name].first[:name]
+      @option.id ? (redirect_to edit_dilemma_option_path(@option.dilemma, @option)) : (redirect_to new_dilemma_option_path)
+    else
+      redirect_to dilemma_option_path(@option.dilemma, @option)
+    end
   end
 end
