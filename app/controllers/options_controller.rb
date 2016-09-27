@@ -42,6 +42,7 @@ class OptionsController < ApplicationController
     if @option.invalid? && @option.name != ""
       @option.factors.each do |fact|
         if fact.invalid?
+          binding.pry
           @option.factors.delete(fact)
           flash[:message] = fact.errors.messages[:points].first
         else
